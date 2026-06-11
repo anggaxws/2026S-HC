@@ -1,0 +1,389 @@
+:root {
+  --bg: #e9eeeb;
+  --bg-soft: #f4f7f4;
+  --panel: #f7faf7;
+  --panel-strong: #eef3ef;
+  --panel-border: #d6ddd7;
+  --panel-border-soft: #e0e7e1;
+  --text: #1f2933;
+  --text-soft: #5b6872;
+  --text-dim: #7c8790;
+  --accent: #0f766e;
+  --accent-soft: #dff5f1;
+  --amber: #c97a26;
+  --danger: #dc2626;
+  --shadow: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Geist", sans-serif;
+}
+
+button,
+canvas,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--text-dim);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+  padding: 24px 32px 18px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.topbar h1,
+.panel-heading h2 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.topbar h1 {
+  font-size: clamp(1.7rem, 2vw, 2.2rem);
+  font-weight: 600;
+}
+
+.connection-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--danger);
+}
+
+.topbar-stats {
+  display: flex;
+  gap: 14px;
+}
+
+.topbar-stat {
+  min-width: 132px;
+  padding: 14px 16px;
+  background: var(--bg-soft);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.topbar-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-dim);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.topbar-stat strong {
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.1rem;
+}
+
+.workspace {
+  min-height: calc(100vh - 92px);
+}
+
+.dashboard {
+  padding: 24px 32px 32px;
+}
+
+.hero-grid,
+.lower-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.hero-grid {
+  grid-template-columns: minmax(0, 1.65fr) minmax(320px, 0.95fr);
+}
+
+.lower-grid {
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+  margin-top: 22px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.radar-panel,
+.analytics-panel,
+.activity-panel,
+.chart-panel {
+  padding: 22px;
+}
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.panel-heading.compact {
+  align-items: center;
+}
+
+.panel-heading h2 {
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  font-weight: 600;
+}
+
+.radar-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;
+  margin-top: 12px;
+  padding: 8px 0 0;
+}
+
+.radar-stage canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: transparent;
+  border-radius: 14px;
+}
+
+.radar-glow {
+  display: none;
+}
+
+.analytics-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.metric-stack,
+.zone-bars {
+  display: grid;
+  gap: 12px;
+}
+
+.metric-card,
+.subpanel {
+  padding: 16px;
+  background: var(--panel-strong);
+  border: 1px solid var(--panel-border-soft);
+  border-radius: 12px;
+}
+
+.metric-label,
+.subpanel-heading h3,
+.zone-row,
+.activity-label {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.metric-label {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-card strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+}
+
+.metric-card p,
+.subpanel h3,
+.zone-row span {
+  margin: 8px 0 0;
+  color: var(--text-soft);
+}
+
+.subpanel-heading h3 {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.zone-item + .zone-item {
+  margin-top: 12px;
+}
+
+.zone-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
+.bar-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf2f6;
+  border: 1px solid var(--panel-border-soft);
+}
+
+.bar-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: width 0.28s ease;
+}
+
+.activity-panel {
+  min-height: 320px;
+}
+
+.activity-bars {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  align-items: end;
+  min-height: 220px;
+  margin-top: 18px;
+}
+
+.activity-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.activity-bar-track {
+  display: flex;
+  align-items: end;
+  width: 100%;
+  height: 160px;
+  padding: 6px;
+  border: 1px solid var(--panel-border-soft);
+  border-radius: 12px;
+  background: var(--panel-strong);
+}
+
+.activity-bar-fill {
+  width: 100%;
+  min-height: 6px;
+  border-radius: 8px;
+  background: var(--amber);
+  transition: height 0.28s ease;
+}
+
+.activity-label {
+  color: var(--text-dim);
+  font-size: 0.73rem;
+  letter-spacing: 0.05em;
+}
+
+.chart-panel {
+  min-height: 320px;
+}
+
+.chart-wrap {
+  margin-top: 16px;
+  padding: 16px 16px 8px;
+  border: 1px solid var(--panel-border-soft);
+  border-radius: 12px;
+  background: var(--panel-strong);
+}
+
+.chart-wrap canvas {
+  width: 100%;
+}
+
+@media (max-width: 1180px) {
+  .topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid,
+  .lower-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar,
+  .dashboard {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .topbar-stats {
+    flex-direction: column;
+  }
+
+  .topbar-stat {
+    width: 100%;
+    text-align: left;
+  }
+
+  .radar-panel,
+  .analytics-panel,
+  .activity-panel,
+  .chart-panel {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .radar-stage {
+    padding: 8px 0 4px;
+  }
+
+  .activity-bars {
+    gap: 8px;
+  }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arduino Radar Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-copy">
+        <h1>Arduino Radar Dashboard</h1>
+        <div class="connection-line">
+          <span class="status-dot"></span>
+          <span>Connection Status:</span>
+          <span id="status">Loading...</span>
+        </div>
+      </div>
+      <div class="topbar-stats">
+        <div class="topbar-stat">
+          <span class="topbar-label">Angle</span>
+          <strong><span id="angle">-</span> deg</strong>
+        </div>
+        <div class="topbar-stat">
+          <span class="topbar-label">Distance</span>
+          <strong><span id="distance">-</span> cm</strong>
+        </div>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <main class="dashboard">
+        <section class="hero-grid">
+          <article class="panel radar-panel" id="radar-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Object Detection Radar</h2>
+              </div>
+            </div>
+            <div class="radar-stage">
+              <canvas id="radar" width="500" height="500"></canvas>
+              <div class="radar-glow"></div>
+            </div>
+          </article>
+
+          <article class="panel analytics-panel" id="analytics-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Live Analytics</h2>
+              </div>
+            </div>
+
+            <div class="metric-stack">
+              <section class="metric-card">
+                <span class="metric-label">Closest object</span>
+                <strong id="closest-distance">-</strong>
+                <p id="closest-angle">No valid detection yet</p>
+              </section>
+
+              <section class="metric-card">
+                <span class="metric-label">Distance</span>
+                <strong id="average-distance">-</strong>
+                <p>Distance Information</p>
+              </section>
+
+              <section class="metric-card">
+                <span class="metric-label">Most active zone</span>
+                <strong id="active-zone">-</strong>
+                <p id="zone-breakdown">Left 0 | Center 0 | Right 0</p>
+              </section>
+            </div>
+
+            <section class="subpanel">
+              <div class="subpanel-heading">
+                <h3>Zone Occupancy</h3>
+              </div>
+              <div class="zone-bars">
+                <div class="zone-item">
+                  <div class="zone-row">
+                    <span>Left</span>
+                    <span id="zone-left-count">0</span>
+                  </div>
+                  <div class="bar-track"><div class="bar-fill" id="zone-left-bar"></div></div>
+                </div>
+                <div class="zone-item">
+                  <div class="zone-row">
+                    <span>Center</span>
+                    <span id="zone-center-count">0</span>
+                  </div>
+                  <div class="bar-track"><div class="bar-fill" id="zone-center-bar"></div></div>
+                </div>
+                <div class="zone-item">
+                  <div class="zone-row">
+                    <span>Right</span>
+                    <span id="zone-right-count">0</span>
+                  </div>
+                  <div class="bar-track"><div class="bar-fill" id="zone-right-bar"></div></div>
+                </div>
+              </div>
+            </section>
+          </article>
+        </section>
+
+        <section class="lower-grid">
+          <article class="panel activity-panel">
+            <div class="panel-heading compact">
+              <div>
+                <h2>Angle Activity</h2>
+              </div>
+            </div>
+            <div class="activity-bars" id="angle-activity"></div>
+          </article>
+
+          <article class="panel chart-panel" id="chart-panel">
+            <div class="panel-heading compact">
+              <div>
+                <h2>Distance Tracking</h2>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="chart" height="240"></canvas>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
