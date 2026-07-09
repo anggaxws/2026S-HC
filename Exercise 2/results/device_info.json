@@ -1,0 +1,14 @@
+{
+  "platform": "NVIDIA CUDA",
+  "name": "NVIDIA GeForce RTX 2060 with Max-Q Design",
+  "vendor": "NVIDIA Corporation",
+  "type": "GPU",
+  "driver_version": "610.74",
+  "opencl_c_version": "OpenCL C 1.2 ",
+  "global_mem_size_bytes": 6442123264,
+  "local_mem_size_bytes": 49152,
+  "max_compute_units": 30,
+  "max_work_group_size": 1024,
+  "max_clock_frequency_mhz": 1185,
+  "max_mem_alloc_size_bytes": 1610530816
+}
